@@ -1,0 +1,138 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.Master.cs" Inherits="PropertyRentalContarct.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <style>
+        .navbar-default{
+            background-color:cadetblue;           
+        }
+        
+        .navbar-default .navbar-nav li a 
+        {
+            color: white;
+        }
+        .navbar .navbar-nav li a 
+        {
+            color: white;
+        }  
+        .navbar .navbar-nav .liclr a 
+        {
+            color: white;
+        }  
+        li:hover
+        {
+            background-color:white;       
+            color:black;
+        } 
+        a
+        {            
+            font-size:medium;
+            font-weight:bold;
+        }
+        .liclr :hover
+        {
+            background-color:white;       
+            color:black;
+        }          
+        .aclr {
+            color:white;
+        }
+        #bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height:200px;
+            width:100%;
+            overflow:hidden;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>             
+    
+    <asp:Panel ID="PAdmin" runat="server">
+        <nav class="navbar navbar-default" style="background-color:cadetblue;">
+            <div class="container-fluid">        
+                <ul class="nav navbar-nav">
+                    <li class="liclr"><a href="CrDashboard.aspx">Cirrus Dashboard</a></li>                   
+                    <li class="liclr"><a href="ManageLnd.aspx">Manage Landlord</a></li>
+                    <li class="liclr"><a href="ManageTnt.aspx">Manage Tenant</a></li>
+                    <li class="liclr"><a href="ViewLRating.aspx">Landlord Feedback</a></li>
+                    <li class="liclr"><a href="ViewTRating.aspx">Tenant Feedback</a></li>
+                </ul>
+                 <ul class="nav navbar-nav navbar-right">              
+                    <li class="liclr"><a href="Alogout.aspx">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+                </ul>
+            </div>
+        </nav>  
+    </asp:Panel>
+
+    <asp:Panel ID="PDefault" runat="server">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">                        
+            </div>
+        </nav>  
+    </asp:Panel>
+
+    <asp:Panel ID="PLandlord" runat="server">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">        
+                <ul class="nav navbar-nav">
+                    <li><a href="LHome.aspx">Home</a></li>                    
+                    <li><a href="LTopUp.aspx">TopUp Wallet</a></li>                    
+                    <li><a href="ManageProperty.aspx">Manage Property Details</a></li>
+                    <li><a href="ViewTenants.aspx">View tenant</a></li>
+                    <li><a href="ManageContract.aspx">Manage Contract</a></li>
+                    <li><a href="LTransactionDetails.aspx">Transactions History</a></li>
+                    <li><a href="LRating.aspx">Feedback</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">              
+                    <li><a href="Llogout.aspx">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+                </ul>
+            </div>
+        </nav>  
+    </asp:Panel>
+
+    <asp:Panel ID="PTenant" runat="server">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">        
+                <ul class="nav navbar-nav">
+                    <li><a href="THome.aspx">Home</a></li>
+                    <li><a href="TTopUp.aspx">TopUp Wallet</a></li>
+                    <li><a href="ViewPropertyDetails.aspx">Property Details</a></li>
+                    <li><a href="ContractDetails.aspx">Contract Details</a></li>
+                    <li><a href="PayRent.aspx">Pay Rent</a></li>
+                    <li><a href="TransactionDetails.aspx">Transactions History</a></li>
+                    <li><a href="TRating.aspx">Feedback</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">              
+                    <li><a href="Tlogout.aspx">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+                </ul>
+            </div>
+        </nav>  
+    </asp:Panel>
+        
+    <form id="form1" runat="server">   
+    
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>       
+    </form>      
+    <div id="bottom">
+       
+    </div>   
+</body>
+</html>

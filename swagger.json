@@ -1,0 +1,5121 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Stratis Node API",
+    "description": "Access to the Stratis Node's api.",
+    "version": "1"
+  },
+  "paths": {
+    "/api/AddressBook/address": {
+      "post": {
+        "tags": [
+          "AddressBook"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressBookEntryRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressBookEntryRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressBookEntryRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddressBookEntryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AddressBook"
+        ],
+        "parameters": [
+          {
+            "name": "label",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/AddressBook": {
+      "get": {
+        "tags": [
+          "AddressBook"
+        ],
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/Balances/over-amount-at-height": {
+      "get": {
+        "tags": [
+          "Balances"
+        ],
+        "parameters": [
+          {
+            "name": "blockHeight",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/BlockStore/addressindexertip": {
+      "get": {
+        "tags": [
+          "BlockStore"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/BlockStore/block": {
+      "get": {
+        "tags": [
+          "BlockStore"
+        ],
+        "parameters": [
+          {
+            "name": "Hash",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ShowTransactionDetails",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "OutputJson",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/BlockStore/getblockcount": {
+      "get": {
+        "tags": [
+          "BlockStore"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/BlockStore/getaddressesbalances": {
+      "get": {
+        "tags": [
+          "BlockStore"
+        ],
+        "parameters": [
+          {
+            "name": "addresses",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minConfirmations",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/BlockStore/getverboseaddressesbalances": {
+      "get": {
+        "tags": [
+          "BlockStore"
+        ],
+        "parameters": [
+          {
+            "name": "addresses",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/BlockStore/getutxoset": {
+      "get": {
+        "tags": [
+          "BlockStore"
+        ],
+        "parameters": [
+          {
+            "name": "atBlockHeight",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/BlockStore/getutxosetforaddress": {
+      "get": {
+        "tags": [
+          "BlockStore"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/BlockStore/getlastbalanceupdatetransaction": {
+      "get": {
+        "tags": [
+          "BlockStore"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/ConnectionManager/addnode": {
+      "get": {
+        "tags": [
+          "ConnectionManager"
+        ],
+        "parameters": [
+          {
+            "name": "endpoint",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "command",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/ConnectionManager/getpeerinfo": {
+      "get": {
+        "tags": [
+          "ConnectionManager"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Consensus/deploymentflags": {
+      "get": {
+        "tags": [
+          "Consensus"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Consensus/getbestblockhash": {
+      "get": {
+        "tags": [
+          "Consensus"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Consensus/getblockhash": {
+      "get": {
+        "tags": [
+          "Consensus"
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/swagger/contracts/{address}": {
+      "get": {
+        "tags": [
+          "ContractSwagger"
+        ],
+        "summary": "Dynamically generates a swagger document for the contract at the given address.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "description": "The contract's address.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/swagger/contracts": {
+      "post": {
+        "tags": [
+          "ContractSwagger"
+        ],
+        "summary": "Add the contract address to the Swagger dropdown",
+        "requestBody": {
+          "description": "The contract's address.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddContractRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddContractRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddContractRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddContractRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dashboard/Stats": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dashboard/AsyncLoopsStats": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contract/{address}/method/{method}": {
+      "post": {
+        "tags": [
+          "DynamicContract"
+        ],
+        "summary": "Call a method on the contract by broadcasting a call transaction to the network.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "description": "The address of the contract to call.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "method",
+            "in": "path",
+            "description": "The name of the method on the contract being called.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": { }
+            },
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/contract/{address}/property/{property}": {
+      "get": {
+        "tags": [
+          "DynamicContract"
+        ],
+        "summary": "Query the value of a property on the contract using a local call.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "description": "The address of the contract to query.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "property",
+            "in": "path",
+            "description": "The name of the property to query.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Federation/reconstruct": {
+      "put": {
+        "tags": [
+          "Federation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Federation/members/current": {
+      "get": {
+        "tags": [
+          "Federation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Federation/members": {
+      "get": {
+        "tags": [
+          "Federation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Federation/mineratheight": {
+      "get": {
+        "tags": [
+          "Federation"
+        ],
+        "parameters": [
+          {
+            "name": "blockHeight",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Federation/federationatheight": {
+      "get": {
+        "tags": [
+          "Federation"
+        ],
+        "parameters": [
+          {
+            "name": "blockHeight",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Mempool/getrawmempool": {
+      "get": {
+        "tags": [
+          "Mempool"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Network/disconnect": {
+      "post": {
+        "tags": [
+          "Network"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DisconnectPeerViewModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DisconnectPeerViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DisconnectPeerViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DisconnectPeerViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Network/setban": {
+      "post": {
+        "tags": [
+          "Network"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetBanPeerViewModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetBanPeerViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetBanPeerViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetBanPeerViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Network/getbans": {
+      "get": {
+        "tags": [
+          "Network"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Network/clearbanned": {
+      "post": {
+        "tags": [
+          "Network"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Node/status": {
+      "get": {
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "publish",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/getblockheader": {
+      "get": {
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isJsonFormat",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/getrawtransaction": {
+      "get": {
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "trxid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "verbose",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/decoderawtransaction": {
+      "post": {
+        "tags": [
+          "Node"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecodeRawTransactionModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecodeRawTransactionModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecodeRawTransactionModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecodeRawTransactionModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/validateaddress": {
+      "get": {
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/gettxout": {
+      "get": {
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "trxid",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vout",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "includeMemPool",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/gettxoutproof": {
+      "get": {
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "txids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "blockhash",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/shutdown": {
+      "post": {
+        "tags": [
+          "Node"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/stop": {
+      "post": {
+        "tags": [
+          "Node"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/rewind": {
+      "put": {
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Node/loglevels": {
+      "put": {
+        "tags": [
+          "Node"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogRulesRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogRulesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogRulesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogRulesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/logrules": {
+      "get": {
+        "tags": [
+          "Node"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/asyncloops": {
+      "get": {
+        "tags": [
+          "Node"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Node/datafolder/chain": {
+      "delete": {
+        "tags": [
+          "Node"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Notifications/sync": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/RPC/callbyname": {
+      "post": {
+        "tags": [
+          "RPC"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": { }
+            },
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/RPC/listmethods": {
+      "get": {
+        "tags": [
+          "RPC"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "405": {
+            "description": "Method Not Allowed"
+          }
+        }
+      }
+    },
+    "/api/SignalR/getConnectionInfo": {
+      "get": {
+        "tags": [
+          "SignalR"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/code": {
+      "get": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Gets the bytecode for a smart contract as a hexadecimal string. The bytecode is decompiled to\r\nC# source, which is returned as well. Be aware, it is the bytecode which is being executed,\r\nso this is the \"source of truth\".",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "The address of the smart contract to retrieve as bytecode and C# source.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns code response (may be unsuccessful)"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/balance": {
+      "get": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Gets the balance of a smart contract in STRAT (or the sidechain coin). This method only works for smart contract addresses.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "The address of the smart contract to retrieve the balance for.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns balance"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/storage": {
+      "get": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Gets a single piece of smart contract data, which was stored as a key–value pair using the\r\nSmartContract.PersistentState property. \r\nThe method performs a lookup in the smart contract\r\nstate database for the supplied smart contract address and key.\r\nThe value associated with the given key, deserialized for the specified data type, is returned.\r\nIf the key does not exist or deserialization fails, the method returns the default value for\r\nthe specified type.",
+        "parameters": [
+          {
+            "name": "BlockHeight",
+            "in": "query",
+            "description": "The height at which to query the state. If unset, will default to the current chain tip.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "ContractAddress",
+            "in": "query",
+            "description": "The address of the smart contract.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StorageKey",
+            "in": "query",
+            "description": "The key for the piece of stored data to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DataType",
+            "in": "query",
+            "description": "The stored data type.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MethodParameterDataType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns data response (may be unsuccessful)"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/receipt": {
+      "get": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Gets a smart contract transaction receipt. Receipts contain information about how a smart contract transaction was executed.\r\nThis includes the value returned from a smart contract call and how much gas was used.",
+        "parameters": [
+          {
+            "name": "txHash",
+            "in": "query",
+            "description": "A hash of the smart contract transaction (the transaction ID).",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns transaction receipt"
+          },
+          "400": {
+            "description": "Transaction not found"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/receipt-search": {
+      "get": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Searches a smart contract's receipts for those which match a specific event. The SmartContract.Log() function\r\nis capable of storing C# structs, and structs are used to store information about different events occurring \r\non the smart contract. For example, a \"TransferLog\" struct could contain \"From\" and \"To\" fields and be used to log\r\nwhen a smart contract makes a transfer of funds from one wallet to another. The log entries are held inside the smart contract,\r\nindexed using the name of the struct, and are linked to individual transaction receipts.\r\nTherefore, it is possible to return a smart contract's transaction receipts\r\nwhich match a specific event (as defined by the struct name).",
+        "parameters": [
+          {
+            "name": "contractAddress",
+            "in": "query",
+            "description": "The contract address from which events were raised.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "eventName",
+            "in": "query",
+            "description": "The name of the event raised.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "topics",
+            "in": "query",
+            "description": "The topics to search. All specified topics must be present.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "fromBlock",
+            "in": "query",
+            "description": "The block number from which to start searching.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "toBlock",
+            "in": "query",
+            "description": "The block number where searching finishes.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/build-create": {
+      "post": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Builds a transaction to create a smart contract. Although the transaction is created, the smart contract is not\r\ndeployed on the network, and no gas or fees are consumed.\r\nInstead the created transaction is returned as a hexadecimal string within a JSON object.\r\nTransactions built using this method can be deployed using /api/SmartContractWallet/send-transaction.\r\nHowever, unless there is a need to closely examine the transaction before deploying it, you should use\r\napi/SmartContracts/build-and-send-create.",
+        "requestBody": {
+          "description": "An object containing the necessary parameters to build the transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns create contract response"
+          },
+          "400": {
+            "description": "Invalid request or failed to build transaction"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/build-call": {
+      "post": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Builds a transaction to call a smart contract method. Although the transaction is created, the\r\ncall is not made, and no gas or fees are consumed.\r\nInstead the created transaction is returned as a JSON object.\r\nTransactions built using this method can be deployed using /api/SmartContractWallet/send-transaction\r\nHowever, unless there is a need to closely examine the transaction before deploying it, you should use\r\napi/SmartContracts/build-and-send-call.",
+        "requestBody": {
+          "description": "An object containing the necessary parameters to build the transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns call contract response"
+          },
+          "400": {
+            "description": "Invalid request or failed to build transaction"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/build-transaction": {
+      "post": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Builds a transaction to transfer funds on a smart contract network.",
+        "requestBody": {
+          "description": "An object containing the necessary parameters to build the transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildContractTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildContractTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildContractTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildContractTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns transaction response"
+          },
+          "400": {
+            "description": "Invalid request or unexpected exception occurred"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/estimate-fee": {
+      "post": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Gets a fee estimate for a specific smart contract account-based transfer transaction.\r\nThis differs from fee estimation on standard networks due to the way inputs must be selected for account-based transfers.",
+        "requestBody": {
+          "description": "An object containing the parameters used to build the the fee estimation transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScTxFeeEstimateRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScTxFeeEstimateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScTxFeeEstimateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScTxFeeEstimateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns estimated fee"
+          },
+          "400": {
+            "description": "Invalid request or unexpected exception occurred"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/build-and-send-create": {
+      "post": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Builds a transaction to create a smart contract and then broadcasts the transaction to the network.\r\nIf the deployment is successful, methods on the smart contract can be subsequently called.",
+        "requestBody": {
+          "description": "An object containing the necessary parameters to build the transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns create transaction response"
+          },
+          "400": {
+            "description": "Invalid request, failed to build transaction, or cannot broadcast transaction"
+          },
+          "403": {
+            "description": "No connected peers"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/build-and-send-call": {
+      "post": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Builds a transaction to call a smart contract method and then broadcasts the transaction to the network.\r\nIf the call is successful, any changes to the smart contract balance or persistent data are propagated\r\nacross the network.",
+        "requestBody": {
+          "description": "An object containing the necessary parameters to build the transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns call transaction response"
+          },
+          "400": {
+            "description": "Invalid request or cannot broadcast transaction"
+          },
+          "403": {
+            "description": "No connected peers"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/local-call": {
+      "post": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Makes a local call to a method on a smart contract that has been successfully deployed. A transaction \r\nis not created as the call is never propagated across the network. All persistent data held by the   \r\nsmart contract is copied before the call is made. Only this copy is altered by the call\r\nand the actual data is unaffected. Even if an amount of funds are specified to send with the call,\r\nno funds are in fact sent.\r\nThe purpose of this function is to query and test methods.",
+        "requestBody": {
+          "description": "An object containing the necessary parameters to build the transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalCallContractRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalCallContractRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalCallContractRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalCallContractRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns call response"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "500": {
+            "description": "Unable to deserialize method parameters"
+          }
+        }
+      }
+    },
+    "/api/SmartContracts/address-balances": {
+      "get": {
+        "tags": [
+          "SmartContracts"
+        ],
+        "summary": "Gets all addresses owned by a wallet which have a balance associated with them. This\r\nmethod effectively returns the balance of all the UTXOs associated with a wallet.\r\nIn a case where multiple UTXOs are associated with one address, the amounts\r\nare tallied to give a total for that address.",
+        "parameters": [
+          {
+            "name": "walletName",
+            "in": "query",
+            "description": "The name of the wallet to retrieve the addresses from.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns address balances"
+          }
+        }
+      }
+    },
+    "/api/SmartContractWallet/account-addresses": {
+      "get": {
+        "tags": [
+          "SmartContractWallet"
+        ],
+        "summary": "Gets a smart contract account address.\r\nThis is a single address to use for all smart contract interactions.\r\nSmart contracts send funds to and store data at this address. For example, an ERC-20 token\r\nwould store tokens allocated to a user at this address, although the actual data\r\ncould, in fact, be anything. The address stores a history of smart contract create/call transactions.   \r\nIt also holds a UTXO list/balance based on UTXOs sent to it from smart contracts or user wallets.\r\nOnce a smart contract has written data to this address, you need to use the address to\r\nprovide gas and fees for smart contract calls involving that stored data (for that smart contract deployment).\r\nIn the case of specific ERC-20 tokens allocated to you, using this address would be\r\na requirement if you were to, for example, send some of the tokens to an exchange.  \r\nIt is therefore recommended that in order to keep an intact history and avoid complications,\r\nyou use the single smart contract address provided by this function for all interactions with smart contracts.\r\nIn addition, a smart contract address can be used to identify a contract deployer.\r\nSome methods, such as a withdrawal method on an escrow smart contract, should only be executed\r\nby the deployer, and in this case, it is the smart contract account address that identifies the deployer.\r\n \r\nNote that this account differs from \"account 0\", which is the \"default\r\nholder of multiple addresses\". Other address holding accounts can be created,\r\nbut they should not be confused with the smart contract account, which is represented\r\nby a single address.",
+        "parameters": [
+          {
+            "name": "walletName",
+            "in": "query",
+            "description": "The name of the wallet to retrieve a smart contract account address for.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns account addresses"
+          },
+          "400": {
+            "description": "Wallet name not provided or unexpected exception occurred"
+          }
+        }
+      }
+    },
+    "/api/SmartContractWallet/address-balance": {
+      "get": {
+        "tags": [
+          "SmartContractWallet"
+        ],
+        "summary": "Gets the balance at a specific wallet address in STRAT (or the sidechain coin).\r\nThis method gets the UTXOs at the address that the wallet can spend.\r\nThe function can be used to query the balance at a smart contract account address\r\nsupplied by /api/SmartContractWallet/account-addresses.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns address balance"
+          }
+        }
+      }
+    },
+    "/api/SmartContractWallet/history": {
+      "get": {
+        "tags": [
+          "SmartContractWallet"
+        ],
+        "summary": "Gets the history of a specific wallet address.\r\nThis includes the smart contract create and call transactions\r\nThis method can be used to query the balance at a smart contract account address\r\nsupplied by /api/SmartContractWallet/account-addresses. Indeed,\r\nit is advisable to use /api/SmartContractWallet/account-addresses\r\nto generate an address for all smart contract interactions.\r\nIf this has been done, and that address is supplied to this method,\r\na list of all smart contract interactions for a wallet will be returned.",
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Skip",
+            "in": "query",
+            "description": "An optional value allowing (with Take) pagination of the wallet's history. If given,\r\nthe member specifies the numbers of records in the wallet's history to skip before\r\nbeginning record retrieval; otherwise the wallet history records are retrieved starting from 0.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Take",
+            "in": "query",
+            "description": "An optional value allowing (with Skip) pagination of the wallet's history. If given,\r\nthe member specifies the number of records in the wallet's history to retrieve in this call; otherwise all\r\nwallet history records are retrieved.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns transaction history"
+          },
+          "400": {
+            "description": "Invalid request or unexpected exception occurred"
+          },
+          "500": {
+            "description": "Request is null"
+          }
+        }
+      }
+    },
+    "/api/SmartContractWallet/create": {
+      "post": {
+        "tags": [
+          "SmartContractWallet"
+        ],
+        "summary": "Builds a transaction to create a smart contract and then broadcasts the transaction to the network.\r\nIf the deployment is successful, methods on the smart contract can be subsequently called.",
+        "requestBody": {
+          "description": "An object containing the necessary parameters to build the transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCreateContractTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns build transaction response"
+          },
+          "400": {
+            "description": "Invalid request, failed to build transaction, or could not broadcast transaction"
+          }
+        }
+      }
+    },
+    "/api/SmartContractWallet/call": {
+      "post": {
+        "tags": [
+          "SmartContractWallet"
+        ],
+        "summary": "Builds a transaction to call a smart contract method and then broadcasts the transaction to the network.\r\nIf the call is successful, any changes to the smart contract balance or persistent data are propagated\r\nacross the network.",
+        "requestBody": {
+          "description": "An object containing the necessary parameters to build the transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildCallContractTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns build transaction response"
+          },
+          "400": {
+            "description": "Invalid request, failed to build transaction, or could not broadcast transaction"
+          }
+        }
+      }
+    },
+    "/api/SmartContractWallet/send-transaction": {
+      "post": {
+        "tags": [
+          "SmartContractWallet"
+        ],
+        "summary": "Broadcasts a transaction, which either creates a smart contract or calls a method on a smart contract.\r\nIf the contract deployment or method call are successful gas and fees are consumed.",
+        "requestBody": {
+          "description": "An object containing the necessary parameters to send the transaction.",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the broadcast transaction"
+          },
+          "400": {
+            "description": "Invalid request, failed to broadcast transaction or unexpected exception occurred"
+          },
+          "500": {
+            "description": "Request is null, or no peers are connected"
+          }
+        }
+      }
+    },
+    "/api/Voting/polls/tip": {
+      "get": {
+        "tags": [
+          "Voting"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Voting/polls/pending": {
+      "get": {
+        "tags": [
+          "Voting"
+        ],
+        "parameters": [
+          {
+            "name": "voteType",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/VoteKey"
+            }
+          },
+          {
+            "name": "pubKeyOfMemberBeingVotedOn",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Voting/polls/finished": {
+      "get": {
+        "tags": [
+          "Voting"
+        ],
+        "parameters": [
+          {
+            "name": "voteType",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/VoteKey"
+            }
+          },
+          {
+            "name": "pubKeyOfMemberBeingVotedOn",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Voting/polls/executed": {
+      "get": {
+        "tags": [
+          "Voting"
+        ],
+        "parameters": [
+          {
+            "name": "voteType",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/VoteKey"
+            }
+          },
+          {
+            "name": "pubKeyOfMemberBeingVotedOn",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Voting/polls/expired/members": {
+      "get": {
+        "tags": [
+          "Voting"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Voting/polls/expired/whitelist": {
+      "get": {
+        "tags": [
+          "Voting"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Voting/whitelistedhashes": {
+      "get": {
+        "tags": [
+          "Voting"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Voting/schedulevote-whitelisthash": {
+      "post": {
+        "tags": [
+          "Voting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Voting/schedulevote-removehash": {
+      "post": {
+        "tags": [
+          "Voting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Voting/scheduledvotes": {
+      "get": {
+        "tags": [
+          "Voting"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Voting/schedulevote-kickmember": {
+      "post": {
+        "tags": [
+          "Voting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/KickFederationMemberModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KickFederationMemberModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KickFederationMemberModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/KickFederationMemberModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/mnemonic": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "English"
+            }
+          },
+          {
+            "name": "wordCount",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 12
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Wallet/create": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletCreationRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletCreationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletCreationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletCreationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/signmessage": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignMessageRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignMessageRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignMessageRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignMessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/pubkey": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PubKeyRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PubKeyRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PubKeyRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PubKeyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/verifymessage": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/load": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletLoadRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletLoadRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletLoadRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletLoadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/recover": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletRecoveryRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletRecoveryRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletRecoveryRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletRecoveryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/recover-via-extpubkey": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletExtPubRecoveryRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletExtPubRecoveryRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletExtPubRecoveryRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletExtPubRecoveryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/general-info": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "Name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/transactionCount": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/history": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Take",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SearchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/balance": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IncludeBalanceByAddress",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/received-by-address": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "Address",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/maxbalance": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "FeeType",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AllowUnconfirmed",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/spendable-transactions": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MinConfirmations",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/estimate-txfee": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TxFeeEstimateRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TxFeeEstimateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TxFeeEstimateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TxFeeEstimateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/build-transaction": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/build-interflux-transaction": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildInterFluxTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildInterFluxTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildInterFluxTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildInterFluxTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/send-transaction": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/list-wallets": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/account": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUnusedAccountModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUnusedAccountModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUnusedAccountModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUnusedAccountModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/accounts": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/unusedaddress": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Segwit",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/unusedaddresses": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Count",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Segwit",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/newaddresses": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Count",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Segwit",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Wallet/addresses": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Segwit",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/remove-transactions": {
+      "delete": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "ReSync",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/remove-wallet": {
+      "delete": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/extpubkey": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/privatekey": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrievePrivateKeyModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrievePrivateKeyModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrievePrivateKeyModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrievePrivateKeyModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/sync": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/Wallet/sync-from-date": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletSyncRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletSyncRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletSyncRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletSyncRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/wallet-stats": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "WalletName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MinConfirmations",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Verbose",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/splitcoins": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SplitCoinsRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SplitCoinsRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SplitCoinsRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SplitCoinsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/distribute-utxos": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DistributeUtxosRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DistributeUtxosRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DistributeUtxosRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DistributeUtxosRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/sweep": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SweepRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SweepRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SweepRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SweepRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/build-offline-sign-request": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildOfflineSignRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildOfflineSignRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildOfflineSignRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildOfflineSignRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/offline-sign-request": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfflineSignRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfflineSignRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfflineSignRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfflineSignRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Wallet/consolidate": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsolidationRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsolidationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsolidationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsolidationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddContractRequest": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "The contract address to add.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddressBookEntryRequest": {
+        "required": [
+          "address",
+          "label"
+        ],
+        "type": "object",
+        "properties": {
+          "label": {
+            "maxLength": 200,
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddressDescriptor": {
+        "required": [
+          "address",
+          "keyPath"
+        ],
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "keyPath": {
+            "type": "string"
+          },
+          "addressType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BuildCallContractTransactionRequest": {
+        "required": [
+          "amount",
+          "contractAddress",
+          "methodName",
+          "password",
+          "sender",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "walletName": {
+            "type": "string",
+            "description": "The name of the wallet containing funds to use to cover transaction fees, gas, and any funds specified in the\r\nAmount field."
+          },
+          "accountName": {
+            "type": "string",
+            "description": "The name of the wallet account containing funds to use to cover transaction fees, gas, and any funds specified in the\r\nAmount field. Defaults to \"account 0\".",
+            "nullable": true
+          },
+          "outpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutpointRequest"
+            },
+            "description": "A list of outpoints to use as inputs for the transaction.",
+            "nullable": true
+          },
+          "contractAddress": {
+            "type": "string",
+            "description": "The address of the smart contract containing the method."
+          },
+          "methodName": {
+            "type": "string",
+            "description": "The name of the method to call."
+          },
+          "amount": {
+            "type": "string",
+            "description": "The amount of STRAT (or sidechain coin) to send to the smart contract address."
+          },
+          "feeAmount": {
+            "type": "string",
+            "description": "The fees in STRAT (or sidechain coin) to cover the method call transaction.",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "The password for the wallet."
+          },
+          "gasPrice": {
+            "maximum": 10000,
+            "minimum": 100,
+            "type": "integer",
+            "description": "The gas price to charge when the method is run by the miner mining the call transaction.",
+            "format": "int64"
+          },
+          "gasLimit": {
+            "maximum": 250000,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "The maximum amount of gas that can be spent executing this transaction.\r\nThis limit cannot be exceeded when the method is \r\nrun by the miner mining the call transaction. If the gas spent exceeds this value, \r\nexecution of the smart contract stops.",
+            "format": "int64"
+          },
+          "sender": {
+            "type": "string",
+            "description": "A wallet address containing the funds to cover transaction fees, gas, and any funds specified in the\r\nAmount field. Some methods, such as a withdrawal method on an escrow smart contract,\r\nshould only be executed by the deployer. In this case, it is this address that identifies\r\nthe deployer.\r\nIt is recommended that you use /api/SmartContractWallet/account-addresses to retrieve\r\nan address to use for smart contracts. This enables you to obtain a smart contract transaction history.\r\nHowever, any sender address containing the required funds will work."
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of encoded strings containing the parameters (and their type) to pass to the smart contract\r\nmethod when it is called. More information on the\r\nformat of a parameter string is available\r\n<a target=\"_blank\" href=\"https://academy.stratisplatform.com/SmartContracts/working-with-contracts.html#parameter-serialization\">here</a>.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A class containing the necessary parameters to perform a smart contract method call request."
+      },
+      "BuildContractTransactionRequest": {
+        "required": [
+          "password",
+          "sender",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "sender": {
+            "type": "string"
+          },
+          "feeAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string"
+          },
+          "segwitChangeAddress": {
+            "type": "boolean"
+          },
+          "walletName": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "outpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutpointRequest"
+            },
+            "nullable": true
+          },
+          "recipients": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipientModel"
+            },
+            "nullable": true
+          },
+          "opReturnData": {
+            "type": "string",
+            "nullable": true
+          },
+          "opReturnAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "feeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowUnconfirmed": {
+            "type": "boolean"
+          },
+          "shuffleOutputs": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "changeAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BuildCreateContractTransactionRequest": {
+        "required": [
+          "amount",
+          "contractCode",
+          "password",
+          "sender",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "walletName": {
+            "type": "string",
+            "description": "The name of the wallet containing funds to use to cover transaction fees, gas, and any funds specified in the\r\nAmount field."
+          },
+          "accountName": {
+            "type": "string",
+            "description": "The name of the wallet account containing funds to use to cover transaction fees, gas, and any funds specified in the\r\nAmount field. Defaults to \"account 0\".",
+            "nullable": true
+          },
+          "outpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutpointRequest"
+            },
+            "description": "A list of outpoints to use as inputs for the transaction.",
+            "nullable": true
+          },
+          "amount": {
+            "type": "string",
+            "description": "The amount of STRAT (or the sidechain coin) to send to the smart contract address on creation."
+          },
+          "feeAmount": {
+            "type": "string",
+            "description": "The fees in STRAT (or the sidechain coin) to cover the smart contract creation transaction.",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "The password for the wallet."
+          },
+          "contractCode": {
+            "type": "string",
+            "description": "The smart contract bytecode."
+          },
+          "gasPrice": {
+            "maximum": 10000,
+            "minimum": 100,
+            "type": "integer",
+            "description": "The gas price to charge when the smart contract constructor is run by the miner mining the creation transaction.",
+            "format": "int64"
+          },
+          "gasLimit": {
+            "maximum": 250000,
+            "minimum": 12000,
+            "type": "integer",
+            "description": "The maximum amount of gas that can be spent executing this transaction.\r\nThis limit cannot be exceeded when the method is \r\nrun by the miner mining the creation transaction. If the gas spent exceeds this value, \r\nexecution of the smart contract stops.",
+            "format": "int64"
+          },
+          "sender": {
+            "type": "string",
+            "description": "A wallet address containing the funds to cover transaction fees, gas, and any funds specified in the\r\nAmount field. Some methods, such as a withdrawal method on an escrow smart contract,\r\nshould only be executed by the deployer. In this case, it is this address that identifies\r\nthe deployer.\r\nIt is recommended that you use /api/SmartContractWallet/account-addresses to retrieve\r\nan address to use for smart contracts. This enables you to obtain a smart contract transaction history.\r\nHowever, any sender address containing the required funds will work."
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of encoded strings containing the parameters (and their type) to pass to the smart contract\r\nconstructor when it is called. More information on the\r\nformat of a parameter string is available\r\n<a target=\"_blank\" href=\"https://academy.stratisplatform.com/SmartContracts/working-with-contracts.html#parameter-serialization\">here</a>.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A class containing the necessary parameters to perform a smart contract creation request."
+      },
+      "BuildInterFluxTransactionRequest": {
+        "required": [
+          "destinationAddress",
+          "destinationChain",
+          "password",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "destinationChain": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "destinationAddress": {
+            "type": "string"
+          },
+          "feeAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string"
+          },
+          "segwitChangeAddress": {
+            "type": "boolean"
+          },
+          "walletName": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "outpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutpointRequest"
+            },
+            "nullable": true
+          },
+          "recipients": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipientModel"
+            },
+            "nullable": true
+          },
+          "opReturnData": {
+            "type": "string",
+            "nullable": true
+          },
+          "opReturnAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "feeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowUnconfirmed": {
+            "type": "boolean"
+          },
+          "shuffleOutputs": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "changeAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BuildOfflineSignRequest": {
+        "required": [
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "feeAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletName": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "outpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutpointRequest"
+            },
+            "nullable": true
+          },
+          "recipients": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipientModel"
+            },
+            "nullable": true
+          },
+          "opReturnData": {
+            "type": "string",
+            "nullable": true
+          },
+          "opReturnAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "feeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowUnconfirmed": {
+            "type": "boolean"
+          },
+          "shuffleOutputs": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "changeAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BuildTransactionRequest": {
+        "required": [
+          "password",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "feeAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string"
+          },
+          "segwitChangeAddress": {
+            "type": "boolean"
+          },
+          "walletName": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "outpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutpointRequest"
+            },
+            "nullable": true
+          },
+          "recipients": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipientModel"
+            },
+            "nullable": true
+          },
+          "opReturnData": {
+            "type": "string",
+            "nullable": true
+          },
+          "opReturnAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "feeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowUnconfirmed": {
+            "type": "boolean"
+          },
+          "shuffleOutputs": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "changeAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConsolidationRequest": {
+        "required": [
+          "walletName",
+          "walletPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "walletName": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletPassword": {
+            "type": "string"
+          },
+          "singleAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "destinationAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "utxoValueThreshold": {
+            "type": "string",
+            "nullable": true
+          },
+          "broadcast": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DecodeRawTransactionModel": {
+        "type": "object",
+        "properties": {
+          "rawHex": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DisconnectPeerViewModel": {
+        "type": "object",
+        "properties": {
+          "peerAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DistributeUtxosRequest": {
+        "required": [
+          "dryRun",
+          "utxoPerTransaction",
+          "utxosCount",
+          "walletName",
+          "walletPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "walletName": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletPassword": {
+            "type": "string"
+          },
+          "singleDestinationAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "useUniqueAddressPerUtxo": {
+            "type": "boolean",
+            "default": false
+          },
+          "reuseAddresses": {
+            "type": "boolean",
+            "default": true
+          },
+          "useChangeAddresses": {
+            "type": "boolean",
+            "default": false
+          },
+          "utxosCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "utxoPerTransaction": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "timestampDifferenceBetweenTransactions": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          "minConfirmations": {
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          "outpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutpointRequest"
+            },
+            "nullable": true
+          },
+          "dryRun": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUnusedAccountModel": {
+        "required": [
+          "password",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "walletName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HashModel": {
+        "required": [
+          "hash"
+        ],
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "KickFederationMemberModel": {
+        "type": "object",
+        "properties": {
+          "pubkey": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocalCallContractRequest": {
+        "required": [
+          "contractAddress",
+          "methodName"
+        ],
+        "type": "object",
+        "properties": {
+          "blockHeight": {
+            "type": "integer",
+            "description": "The height at which to query the contract's state. If unset, will default to the current chain tip.",
+            "format": "int64",
+            "nullable": true
+          },
+          "contractAddress": {
+            "type": "string",
+            "description": "The address of the smart contract containing the method."
+          },
+          "methodName": {
+            "type": "string",
+            "description": "The name of the method to call."
+          },
+          "amount": {
+            "type": "string",
+            "description": "The amount of STRAT (or sidechain coin) to send to the smart contract address. \r\nNo funds are actually sent, but the Amount field allows\r\ncertain scenarios, where the funds sent dictates the result, to be checked.",
+            "nullable": true
+          },
+          "gasPrice": {
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer",
+            "description": "The gas price to use. This is used to calculate the expected expenditure\r\nif the method is run by a miner mining a call transaction rather than\r\nlocally.",
+            "format": "int64"
+          },
+          "gasLimit": {
+            "maximum": 250000,
+            "minimum": 10000,
+            "type": "integer",
+            "description": "The maximum amount of gas that can be spent executing this transaction.\r\nAlthough the gas expenditure is theoretical rather than actual,\r\nthis limit cannot be exceeded even when the method is run locally.",
+            "format": "int64"
+          },
+          "sender": {
+            "type": "string",
+            "description": "A wallet address containing the funds to cover transaction fees, gas, and any funds specified in the\r\nAmount field.\r\nNote that because the method call is local no funds are spent. However, the concept of the sender address\r\nis still valid and may need to be checked.\r\nFor example, some methods, such as a withdrawal method on an escrow smart contract, should only be executed\r\nby the deployer, and in this case, it is the Sender address that identifies the deployer.",
+            "nullable": true
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of encoded strings containing the parameters (and their type) to pass to the smart contract\r\nmethod when it is called. More information on the\r\nformat of a parameter string is available\r\n<a target=\"_blank\" href=\"https://academy.stratisplatform.com/SmartContracts/working-with-contracts.html#parameter-serialization\">here</a>.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A class containing the necessary parameters to perform a local smart contract method call request."
+      },
+      "LogRuleRequest": {
+        "required": [
+          "logLevel",
+          "ruleName"
+        ],
+        "type": "object",
+        "properties": {
+          "ruleName": {
+            "type": "string"
+          },
+          "logLevel": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LogRulesRequest": {
+        "type": "object",
+        "properties": {
+          "logRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogRuleRequest"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MethodParameterDataType": {
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "OfflineSignRequest": {
+        "required": [
+          "walletPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "walletPassword": {
+            "type": "string"
+          },
+          "walletName": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "unsignedTransaction": {
+            "type": "string",
+            "nullable": true
+          },
+          "fee": {
+            "type": "string",
+            "nullable": true
+          },
+          "utxos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UtxoDescriptor"
+            },
+            "nullable": true
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDescriptor"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OutpointRequest": {
+        "required": [
+          "index",
+          "transactionId"
+        ],
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string"
+          },
+          "index": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PubKeyRequest": {
+        "required": [
+          "externalAddress",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "walletName": {
+            "type": "string"
+          },
+          "externalAddress": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RecipientModel": {
+        "required": [
+          "amount"
+        ],
+        "type": "object",
+        "properties": {
+          "destinationAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "destinationScript": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtractFeeFromAmount": {
+            "type": "boolean"
+          },
+          "amount": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RetrievePrivateKeyModel": {
+        "required": [
+          "address",
+          "password",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string"
+          },
+          "walletName": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScTxFeeEstimateRequest": {
+        "required": [
+          "sender",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "sender": {
+            "type": "string"
+          },
+          "walletName": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "outpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutpointRequest"
+            },
+            "nullable": true
+          },
+          "recipients": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipientModel"
+            },
+            "nullable": true
+          },
+          "opReturnData": {
+            "type": "string",
+            "nullable": true
+          },
+          "opReturnAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "feeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowUnconfirmed": {
+            "type": "boolean"
+          },
+          "shuffleOutputs": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "changeAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SendTransactionRequest": {
+        "required": [
+          "hex"
+        ],
+        "type": "object",
+        "properties": {
+          "hex": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SetBanPeerViewModel": {
+        "type": "object",
+        "properties": {
+          "banCommand": {
+            "type": "string",
+            "nullable": true
+          },
+          "banDurationSeconds": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "peerAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SignMessageRequest": {
+        "required": [
+          "externalAddress",
+          "message",
+          "password",
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "walletName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "externalAddress": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SplitCoinsRequest": {
+        "required": [
+          "totalAmountToSplit",
+          "utxosCount",
+          "walletName",
+          "walletPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "walletName": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "walletPassword": {
+            "type": "string"
+          },
+          "totalAmountToSplit": {
+            "type": "string"
+          },
+          "utxosCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SweepRequest": {
+        "required": [
+          "destinationAddress",
+          "privateKeys"
+        ],
+        "type": "object",
+        "properties": {
+          "privateKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "destinationAddress": {
+            "type": "string"
+          },
+          "broadcast": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TxFeeEstimateRequest": {
+        "required": [
+          "walletName"
+        ],
+        "type": "object",
+        "properties": {
+          "walletName": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "outpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutpointRequest"
+            },
+            "nullable": true
+          },
+          "recipients": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipientModel"
+            },
+            "nullable": true
+          },
+          "opReturnData": {
+            "type": "string",
+            "nullable": true
+          },
+          "opReturnAmount": {
+            "type": "string",
+            "nullable": true
+          },
+          "feeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowUnconfirmed": {
+            "type": "boolean"
+          },
+          "shuffleOutputs": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "changeAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UtxoDescriptor": {
+        "required": [
+          "index",
+          "scriptPubKey",
+          "transactionId"
+        ],
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string"
+          },
+          "index": {
+            "type": "string"
+          },
+          "scriptPubKey": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VerifyRequest": {
+        "required": [
+          "externalAddress",
+          "message",
+          "signature"
+        ],
+        "type": "object",
+        "properties": {
+          "signature": {
+            "type": "string"
+          },
+          "externalAddress": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VoteKey": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "WalletCreationRequest": {
+        "required": [
+          "name",
+          "passphrase",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "mnemonic": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string"
+          },
+          "passphrase": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WalletExtPubRecoveryRequest": {
+        "required": [
+          "accountIndex",
+          "extPubKey",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "extPubKey": {
+            "type": "string"
+          },
+          "accountIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WalletLoadRequest": {
+        "required": [
+          "name",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WalletRecoveryRequest": {
+        "required": [
+          "mnemonic",
+          "name",
+          "passphrase",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "mnemonic": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "passphrase": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WalletSyncRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "all": {
+            "type": "boolean"
+          },
+          "walletName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

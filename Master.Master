@@ -1,0 +1,72 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="PropertyRentalContarct.Master" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .navbar-default
+        {
+            background-color:cadetblue;           
+        }
+        /*.navbar ul li 
+        {
+            color:white;    
+        }*/
+        .navbar-default  .navbar-nav li a 
+        {
+            color: white;
+        }        
+        a
+        {
+            font-size:medium;
+            font-weight:bold;
+        }
+        li:hover
+        {
+            background-color:white;           
+            color:black;
+        }
+        a:hover{
+            color:black;
+        }
+        .active
+        {
+            color:blueviolet;
+        }       
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-image: url(../images/canseleri.jpg); background-repeat: no-repeat; background-size: cover;""> 
+    
+    <asp:Panel ID="PDefault" runat="server">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">        
+                <ul class="nav navbar-nav navbar-left" style="margin-right:5%">
+                    <li><a class="navbar-brand" href="#"> NR HOME </a></li> 
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="margin-right:5%">
+                    <li><a style="font-size:18px" href="AdminLogin.aspx">Admin</a></li>                     
+                    <li><a style="font-size:18px" href="LandlordLogin.aspx">Landlord</a></li>                     
+                    <li><a style="font-size:18px" href="TenantLogin.aspx">Tenant</a></li>   
+                </ul>                
+            </div>
+        </nav>  
+    </asp:Panel>
+   <%--  <img src="Images/Cirrus-Banner3.jpg" style="height:350px; width:100%; margin-top:-20px" />--%>
+    <form id="form1" runat="server">
+        <div align="right" >
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
